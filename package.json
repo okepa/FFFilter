@@ -1,0 +1,16 @@
+{
+  "name": "fanfiction",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-ejs-layouts": "^2.2.0",
+    "method-override": "^2.3.7",
+    "scraperjs": "^1.2.0"
+  }
+}
