@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 var FavoritesSchema = mongoose.Schema({
-    Title: String
+    title: String
 });
 
 module.exports = mongoose.model('Favorites', FavoritesSchema);

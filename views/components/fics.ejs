@@ -1,0 +1,38 @@
+<h1>Welcome to your favorites</h1>
+<div class="section">
+  <div class="row container">
+    <div class="col s12 m12 l12">
+      <% for(var i = 0; i < storyTitles.length; i+=5 ) { %>
+        <div class="col s12 m12 l3">
+          <a href="https://www.fanfiction.net//<%= storyTitles[i+1] %>">
+            <p>
+              <%= storyTitles[i] %>
+            </p>
+          </a>
+        </div>
+        <div class="col s12 m12 l2">
+          <a href="https://www.fanfiction.net//<%= storyTitles[i+3] %>">
+            <p>
+              <%= storyTitles[i+2] %>
+            </p>
+          </a>
+        </div>
+        <div class="col s12 m12 l7">
+          <p>
+            <%= storyTitles[i+4] %>
+          </p>
+        </div>
+        <% } %>
+ <!--Need to make the chevrons work-->
+          <ul class="pagination">
+            <li class="waves-effect material-icons"><a id="-1">chevron_left</a></li>
+            <li class="waves-effect"><a id="1">1</a></li>
+            <li class="waves-effect"><a id="2">2</a></li>
+            <li class="waves-effect"><a id="3">3</a></li>
+            <li class="waves-effect"><a id="4">4</a></li>
+            <li class="waves-effect"><a id="5">5</a></li>
+            <li class="waves-effect material-icons"><a id="+1">chevron_right</a></li>
+          </ul>
+    </div>
+  </div>
+</div>

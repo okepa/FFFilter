@@ -1,6 +1,11 @@
-<h1>Welcome to the fanfiction</h1>
-<div class="collection">
- <% for(let i = 0; i < fanfiction.length; i++ ) { %>
-    <a class="collection-item" href="/favorites?f=<%= fanfiction[i].fanfiction %>"><%= fanfiction[i].fanfiction %></a>
- <% } %>
- </div>
+
+<div class="row container">
+    <h1>Choose you fanfiction</h1>
+    <div class="collection">
+        <% for(let i = 0; i < fanfiction.length; i++ ) { %>
+            <a class="collection-item" href="/fics?f=<%= fanfiction[i].fanfiction %>">
+                <%= fanfiction[i].fanfiction %>
+            </a>
+            <% } %>
+    </div>
+</div>

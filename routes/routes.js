@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const indexController = require("../controllers/indexController");
 const fanfictionController = require("../controllers/fanfictionController");
+const favoritesController = require("../controllers/favoritesController");
 
 router.route("/")
     .get(indexController.showIndex);
@@ -9,12 +10,12 @@ router.route("/")
 router.route("/fanfiction")
     .get(fanfictionController.getFanfiction);
 
-router.route("/favorites")
+router.route("/fics")
     .get(fanfictionController.getFavorites);
 
-router.route("/addtofavorites")
-    .get(fanfictionController.getAddToFavorites) 
-    .post(fanfictionController.addToFavorites)
+router.route("/favorites")
+    .get(favoritesController.getAddToFavorites) 
+    .post(favoritesController.addToFavorites)
     
 
 module.exports = router;
