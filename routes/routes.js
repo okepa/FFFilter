@@ -11,7 +11,7 @@ router.route("/fanfiction")
     .get(fanfictionController.getFanfiction);
 
 router.route("/fics")
-    .get(fanfictionController.getFavorites);
+    .get(fanfictionController.getFics);
 
 router.route("/favorites")
     .get(favoritesController.getAddToFavorites) 

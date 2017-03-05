@@ -1,7 +1,29 @@
 <div class="section">
   <div class="row container">
+    <h1>Unread fics</h1>
+    <form id="filter">
+      <div class="input-field col s12 m12 l6">
+        <!--This form need to send the fanfiction in the url, needs to send the sort in the body and the default page will always be 1-->
+        <select id="sort">
+            <option value="5">Follows</option>
+            <option value="4">Favorites</option>
+            <option value="3">Reviews</option>
+            <option value="2">Publish Date</option>
+            <option value="1">Update Date</option>
+          </select>
+        <label>Sort: </label>
+      </div>
+      <div class="input-field col s12 m12 l6">
+        <select id="time">
+            <option value="4">Updated within 6 months</option>
+            <option value="14">Published within 6 months</option>
+            <option value="15">Published within 1 year</option>
+          </select>
+        <label>Time: </label>
+      </div>
+      <input class="btn waves-effect waves-light" type="button" value="Update">
+    </form>
     <div class="col s12 m12 l12">
-      <h1>Unread fics</h1>
       <% for(var i = 0; i < storyTitles.length; i+=5 ) { %>
         <div class="col s12 m12 l3">
           <a href="https://www.fanfiction.net//<%= storyTitles[i+1] %>">
@@ -23,17 +45,18 @@
           </p>
         </div>
         <% } %>
-          <ul class="pagination">
-            <li class="waves-effect material-icons"><a id="-1">chevron_left</a></li>
-            <% for(var i = 1; i <= 20; i++ ) { %>
-              <li class="waves-effect">
-                <a id="<%= i %>">
-                  <%= i %>
-                </a>
-              </li>
-              <% } %>
-                <li class="waves-effect material-icons"><a id="+1">chevron_right</a></li>
-          </ul>
+          <div>
+            <ul class="pagination">
+              <li class="waves-effect material-icons"><a id="-1">chevron_left</a></li>
+              <% for(var i = 1; i <= 20; i++ ) { %>
+                <li class="waves-effect">
+                  <a id="<%= i %>">
+                    <%= i %>
+                  </a>
+                </li>
+                <% } %>
+                  <li class="waves-effect material-icons"><a id="+1">chevron_right</a></li>
+            </ul>
+          </div>
     </div>
   </div>
-</div>

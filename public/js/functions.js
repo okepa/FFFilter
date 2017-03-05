@@ -1,4 +1,7 @@
 $(document).ready(() => {
+
+    $('select').material_select();
+
     $(".pagination a").click((event) => {
         //Couldn't use "this" so used event instead
         let page = event.target.id;
@@ -21,14 +24,23 @@ $(document).ready(() => {
             fanfiction = fanfiction.split("&")[0];
             fanfiction = fanfiction.substr(2);
             window.location.href = `/fics?f=${fanfiction}&p=${originalPage}`;
-
         } else {
             //When the numbers are pressed
-            //get the fanfiction from url
             let fanfiction = window.location.search.split('?')[1];
             fanfiction = fanfiction.substr(2);
             window.location.href = `/fics?f=${fanfiction}&p=${page}`;
         }
+    });
 
+    $("#filter").click(() => {
+        //Get the fanfiction
+        let fanfiction = window.location.search.split('?')[1];
+        fanfiction = fanfiction.split("&")[0];
+        fanfiction = fanfiction.substr(2);
+        //Get the sort from the dropdown
+        let sort = $("#sort :selected").val();
+        let time = $("#time :selected").val();
+        //for some reason it doesnt get the rest of the href
+        window.location.href = `/fics?f=${fanfiction}&s=${sort}&t=${time}`;
     });
 });

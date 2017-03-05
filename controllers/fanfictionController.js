@@ -17,14 +17,33 @@ class FanfictionController {
         });
     }
     //Scrape all the fics for the selected fanfiction
-    static getFavorites(req, res) {
+    static getFics(req, res) {
         //Select what the medium is by doing a find
         Fanfiction.findOne({ "fanfiction": req.query.f }, (err, fm) => {
             if (err) {
                 reject(err);
             } else {
+                //Gets the medium for the database
                 let medium = fm.medium;
+                //Gets the fanfiction from the url
                 let fanfiction = req.query.f;
+                //get the sort of the fics from the url
+                let sort;
+                //select the sort or default 5
+                if (req.query.s == null) {
+                    sort = 5;
+                } else {
+                    sort = req.query.s;
+                }
+                //get the time of the fics from the url
+                let time;
+                //select the sort or default 5
+                if (req.query.t == null) {
+                    time = 4;
+                } else {
+                    time = req.query.t;
+                }
+                //Gets the page from the url
                 let page;
                 //Select the page or default to 1
                 if (req.query.p == null) {
@@ -32,15 +51,20 @@ class FanfictionController {
                 } else {
                     page = req.query.p;
                 }
-                fanfiction = fanfiction.replace(" ", "-");
+                fanfiction = fanfiction.replace(/ /g, "-");
                 fanfiction = fanfiction.replace("/", "-");
+                fanfiction = fanfiction.replace("×", "-");
+                console.log("fanfiction");
+                console.log(fanfiction);
+                console.log("medium");
+                console.log(medium);
                 let favorite = false;
                 let finalArray = [];
                 Favorites.find({}, (err, favorites) => {
                     if (err) {
                         reject(err);
                     } else {
-                        scraperjs.StaticScraper.create(`https://www.fanfiction.net/${medium}/${fanfiction}/?&srt=5&lan=1&r=10&len=20&t=4&p=${page}`)
+                        scraperjs.StaticScraper.create(`https://www.fanfiction.net/${medium}/${fanfiction}/?&srt=${sort}&lan=1&r=10&len=20&t=${time}&p=${page}`)
                             .scrape(($) => {
                                 return $(".z-list.zhover.zpointer *").map(function () {
                                     let scrapeArray = [];
