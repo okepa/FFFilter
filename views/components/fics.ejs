@@ -1,7 +1,7 @@
-<h1>Welcome to your favorites</h1>
 <div class="section">
   <div class="row container">
     <div class="col s12 m12 l12">
+      <h1>Unread fics</h1>
       <% for(var i = 0; i < storyTitles.length; i+=5 ) { %>
         <div class="col s12 m12 l3">
           <a href="https://www.fanfiction.net//<%= storyTitles[i+1] %>">
@@ -26,9 +26,13 @@
           <ul class="pagination">
             <li class="waves-effect material-icons"><a id="-1">chevron_left</a></li>
             <% for(var i = 1; i <= 20; i++ ) { %>
-              <li class="waves-effect"><a id="<%= i %>"><%= i %></a></li>
+              <li class="waves-effect">
+                <a id="<%= i %>">
+                  <%= i %>
+                </a>
+              </li>
               <% } %>
-              <li class="waves-effect material-icons"><a id="+1">chevron_right</a></li>
+                <li class="waves-effect material-icons"><a id="+1">chevron_right</a></li>
           </ul>
     </div>
   </div>

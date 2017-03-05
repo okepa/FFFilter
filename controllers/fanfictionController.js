@@ -33,6 +33,7 @@ class FanfictionController {
                     page = req.query.p;
                 }
                 fanfiction = fanfiction.replace(" ", "-");
+                fanfiction = fanfiction.replace("/", "-");
                 let favorite = false;
                 let finalArray = [];
                 Favorites.find({}, (err, favorites) => {
