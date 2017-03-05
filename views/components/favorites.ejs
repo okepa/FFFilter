@@ -3,7 +3,10 @@
         <h1>Add a favorite</h1>
         <form action="/favorites" method="POST">
             <input type="text" name="title" placeholder="Enter a title" value="<%= newFavorite.title %>">
-            <input type="submit" value="Add">
+            <% if(exists != "null") { %>
+                <p class="red-text"><%= exists %></p>
+            <% } %>
+            <input  class="btn waves-effect waves-light" type="submit" value="Add">
         </form>
     </div>
     <div class="col s12 m12 l12">

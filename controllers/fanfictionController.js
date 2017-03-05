@@ -3,7 +3,7 @@ const Favorites = require('../models/favorites');
 const scraperjs = require('scraperjs');
 
 class FanfictionController {
-
+    //Load the fanfiction onto the page
     static getFanfiction(req, res) {
         Fanfiction.find({}, (err, fanfiction) => {
             if (err) {
@@ -16,7 +16,7 @@ class FanfictionController {
             }
         });
     }
-
+    //Scrape all the fics for the selected fanfiction
     static getFavorites(req, res) {
         //Select what the medium is by doing a find
         Fanfiction.findOne({ "fanfiction": req.query.f }, (err, fm) => {

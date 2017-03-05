@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 const routes = require("./routes/routes");
 
-mongoose.connect('mongodb://127.0.0.1/fanfictions');
+mongoose.connect(process.env.MONGODB_URI);
 
 //View Engine
 app.set('view engine' , 'ejs');
