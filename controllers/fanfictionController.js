@@ -56,7 +56,8 @@ class FanfictionController {
                 fanfiction = fanfiction.replace("×", "-");
                 let favorite = false;
                 let finalArray = [];
-                Favorites.find({}, (err, favorites) => {
+                Favorites.find({"fanfiction":req.query.f}, (err, favorites) => {
+                    console.log(favorites);
                     if (err) {
                         reject(err);
                     } else {

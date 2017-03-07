@@ -1,4 +1,5 @@
 const Favorites = require('../models/favorites');
+const Fanfiction = require('../models/fanfiction')
 
 class FavoritesController {
     //Load the favorites page
@@ -7,15 +8,22 @@ class FavoritesController {
             if (err) {
                 reject(err);
             } else {
-                // create an empty post
-                var newFavorite = {
-                    id: "",
-                    title: ""
-                }
-                res.render("components/favorites", {
-                    newFavorite: newFavorite,
-                    favorites: favorites,
-                    exists: null
+                Fanfiction.find({}, (err, fanfiction) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        // create an empty post
+                        var newFavorite = {
+                            id: "",
+                            title: ""
+                        }
+                        res.render("components/favorites", {
+                            newFavorite: newFavorite,
+                            favorites: favorites,
+                            fanfiction: fanfiction,
+                            exists: null
+                        });
+                    }
                 });
             }
         })
@@ -28,6 +36,7 @@ class FavoritesController {
             } else {
                 if (findFavorites == null && req.body.title != "") {
                     //if the fic is not found then add it to the database
+                    console.log(req.body);
                     Favorites.create(req.body, (err, createFavorites) => {
                         if (err) {
                             res.status(400).send(err.message);
@@ -35,6 +44,38 @@ class FavoritesController {
                             Favorites.find({}, (err, favorites) => {
                                 if (err) {
                                     res.status(400).send(err.message);
+                                } else {
+                                    Fanfiction.find({}, (err, fanfiction) => {
+                                        if (err) {
+                                            reject(err);
+                                        } else {
+                                            // create an empty post
+                                            var newFavorite = {
+                                                id: "",
+                                                title: "",
+                                                medium: ""
+                                            }
+                                            res.render("components/favorites", {
+                                                newFavorite: newFavorite,
+                                                favorites: favorites,
+                                                fanfiction: fanfiction,
+                                                exists: null
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    //if the fic is found then do the error
+                    Favorites.find({}, (err, favorites) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            Fanfiction.find({}, (err, fanfiction) => {
+                                if (err) {
+                                    reject(err);
                                 } else {
                                     // create an empty post
                                     var newFavorite = {
@@ -44,25 +85,12 @@ class FavoritesController {
                                     res.render("components/favorites", {
                                         newFavorite: newFavorite,
                                         favorites: favorites,
-                                        exists: null
+                                        fanfiction: fanfiction,
+                                        exists: "This fic is already in you favorites"
                                     });
                                 }
                             });
                         }
-                    });
-                } else {
-                    //if the fic is found then do the error
-                    Favorites.find({}, (err, favorites) => {
-                        // create an empty post
-                        var newFavorite = {
-                            id: "",
-                            title: ""
-                        }
-                        res.render("components/favorites", {
-                            newFavorite: newFavorite,
-                            favorites: favorites,
-                            exists: "This fic is already in you favorites"
-                        });
                     });
                 }
             }

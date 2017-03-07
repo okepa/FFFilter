@@ -2,17 +2,46 @@
     <div class="col s12 m12 l12">
         <h1>Add a favorite</h1>
         <form action="/favorites" method="POST">
-            <input type="text" name="title" placeholder="Enter a title" value="<%= newFavorite.title %>">
+            <div class="input-field col s12 m12 l12">
+                <input type="text" name="title" value="<%= newFavorite.title %>">
+                <label>Title: </label>
+            </div>
             <% if(exists != "null") { %>
-                <p class="red-text"><%= exists %></p>
-            <% } %>
-            <input  class="btn waves-effect waves-light" type="submit" value="Add">
+                <p class="red-text">
+                    <%= exists %>
+                </p>
+                <% } %>
+            <div class="input-field col s12 m12 l12">
+                <select name="fanfiction">
+                    <% for(let i = 0; i < fanfiction.length; i++ ) { %>
+                    <option value="<%= fanfiction[i].fanfiction %>"><%= fanfiction[i].fanfiction %></option>
+                    <% } %>
+                </select>
+                <label>Fanfiction: </label>
+            </div>
+            <input class="btn waves-effect waves-light" type="submit" value="Add">
         </form>
     </div>
     <div class="col s12 m12 l12">
         <h1>Favorites</h1>
+        <table class="responsive-table centered striped">
+            <thead>
+                <tr>
+                    <th data-field="title">Title</th>
+                    <th data-field="medium">Fanfiction</th>
+                </tr>
+            </thead>
+            <tbody>  
         <% for(let i = 0; i < favorites.length; i++ ) { %>
-            <p><%= favorites[i].title %></p>
-        <% } %>
+            <tr>
+                <td>
+                    <%= favorites[i].title %>
+                </td>
+                <td>
+                    <%= favorites[i].fanfiction %>
+                </td>
+            </tr>
+            <% } %>
+        </table>
     </div>
 </div>
