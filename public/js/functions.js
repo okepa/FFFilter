@@ -10,6 +10,7 @@ $(document).ready(() => {
         time = url.split("&")[2];
         page = url.split("&")[3];
     }
+    console.log(sort);
     if (sort != null) {
         if (sort.indexOf("p=") > -1) {
             page = sort.substr(2);
@@ -18,6 +19,8 @@ $(document).ready(() => {
             sort = sort.substr(2);
             $("#sort option[value='" + sort + "']").attr("selected", "selected");
         }
+    } else {
+        $("#1").addClass("active");
     }
     if (time != null) {
         time = time.substr(2);
@@ -25,7 +28,9 @@ $(document).ready(() => {
     }
     if (page != null) {
         page = page.substr(2);
-        $(`#${page}`).addClass("active")
+        $(`#${page}`).addClass("active");
+    } else {
+        $("#1").addClass("active");
     }
     //Initialise the select
     $('select').material_select();
