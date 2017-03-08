@@ -1,0 +1,20 @@
+<div class="row container">
+    <h1>Choose you fanfiction</h1>
+    <form>
+        <div class="col s12 m12 l6">
+            <div id="fanfiction1" class="collection">
+                <% for(let i = 0; i < fanfiction.length; i++ ) { %>
+                    <a id="<%= fanfiction[i].fanfiction %>1" class="collection-item one"><%= fanfiction[i].fanfiction %></a>
+                    <% } %>
+            </div>
+        </div>
+        <div class="col s12 m12 l6">
+            <div id="fanfiction2" class="collection">
+                <% for(let i = 0; i < fanfiction.length; i++ ) { %>
+                    <a id="<%= fanfiction[i].fanfiction %>2" class="collection-item two"><%= fanfiction[i].fanfiction %></a>
+                    <% } %>
+            </div>
+        </div>
+        <input class="btn waves-effect waves-light" type="button" value="Go" id="crossover">
+    </form>
+</div>

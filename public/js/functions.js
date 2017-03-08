@@ -10,7 +10,6 @@ $(document).ready(() => {
         time = url.split("&")[2];
         page = url.split("&")[3];
     }
-    console.log(sort);
     if (sort != null) {
         if (sort.indexOf("p=") > -1) {
             page = sort.substr(2);
@@ -35,7 +34,7 @@ $(document).ready(() => {
     //Initialise the select
     $('select').material_select();
 
-    //If the pagination buttons aree clicked
+    //If the pagination buttons are clicked
     $(".pagination a").click((event) => {
         //Couldn't use "this" so used event instead
         let page = event.target.id;
@@ -103,7 +102,15 @@ $(document).ready(() => {
                     }
                 }
             }
-            window.location.href = `/fics?f=${fanfiction}&p=${filterSelected}`;
+            let url = window.location.href;
+            url = url.indexOf("fics");
+            if (url > -1) {
+                window.location.href = `/fics?f=${fanfiction}&p=${filterSelected}`;
+            } else {
+                let fanfiction1 = fanfiction.split("-and-")[0];
+                let fanfiction2 = fanfiction.split("-and-")[1];
+                window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}&p=${filterSelected}`;
+            }
         } else {
             //When the numbers are pressed
             let fanfiction = window.location.search.split('?')[1];
@@ -142,7 +149,15 @@ $(document).ready(() => {
                     }
                 }
             }
-            window.location.href = `/fics?f=${fanfiction}&p=${page}`;
+            let url = window.location.href;
+            url = url.indexOf("fics");
+            if (url > -1) {
+                window.location.href = `/fics?f=${fanfiction}&p=${page}`;
+            } else {
+                let fanfiction1 = fanfiction.split("-and-")[0];
+                let fanfiction2 = fanfiction.split("-and-")[1];
+                window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}&p=${page}`;
+            }
         }
     });
     //if the filter has been changed
@@ -154,9 +169,35 @@ $(document).ready(() => {
         //Get the sort from the dropdown
         let sort = $("#sort :selected").val();
         let time = $("#time :selected").val();
-        //for some reason it doesnt get the rest of the href
-        window.location.href = `/fics?f=${fanfiction}&s=${sort}&t=${time}`;
+        //Go to either fic or crossover
+        let url = window.location.href;
+        url = url.indexOf("fics");
+        if (url > -1) {
+            window.location.href = `/fics?f=${fanfiction}&s=${sort}&t=${time}`;
+        } else {
+            let fanfiction1 = fanfiction.split("-and-")[0];
+            let fanfiction2 = fanfiction.split("-and-")[1];
+            window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}&s=${sort}&t=${time}`;
+        }
     });
 
+    $("#fanfiction1").click((event) => {
+        let fanfiction1 = event.target.id;
+        $(".one").removeClass("active");
+        $(`[id="${fanfiction1}"]`).addClass("active");
+    });
 
+    $("#fanfiction2").click((event) => {
+        let fanfiction2 = event.target.id;
+        $(".two").removeClass("active");
+        $(`[id="${fanfiction2}"]`).addClass("active");
+    });
+
+    $("#crossover").click(() => {
+        let fanfiction1 = $("#fanfiction1 .active").html();
+        let fanfiction2 = $("#fanfiction2 .active").html();
+        console.log(fanfiction1);
+        console.log(fanfiction2);
+        window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}`;
+    });
 });

@@ -1,11 +1,12 @@
-
 <div class="row container">
-    <h1>Choose you fanfiction</h1>
-    <div class="collection">
-        <% for(let i = 0; i < fanfiction.length; i++ ) { %>
-            <a class="collection-item" href="/fics?f=<%= fanfiction[i].fanfiction %>">
-                <%= fanfiction[i].fanfiction %>
-            </a>
-            <% } %>
+    <div class="col s12 m12 l12">
+        <h1>Choose you fanfiction</h1>
+        <div class="collection">
+            <% for(let i = 0; i < fanfiction.length; i++ ) { %>
+                <a class="collection-item" href="/fics?f=<%= fanfiction[i].fanfiction %>">
+                    <%= fanfiction[i].fanfiction %>
+                </a>
+                <% } %>
+        </div>
     </div>
 </div>

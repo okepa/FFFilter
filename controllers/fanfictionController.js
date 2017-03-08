@@ -101,11 +101,6 @@ class FanfictionController {
                 });
             }
         });
-        // let finalArray = [];
-        //                             res.render("components/fics", {
-        //                             title: "Favorite",
-        //                             storyTitles: finalArray
-        //                         });
     }
 }
 

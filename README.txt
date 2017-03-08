@@ -1,5 +1,5 @@
 ##FFFilter
 
 cd /e/users/ok/documents/node/fanfiction
-"fanfiction": "Harry Potter", "medium":"book"
-"fanfiction": "Naruto", "medium":"anime"
+
+"fanfiction": "Naruto", "medium":"anime", "id": "10833"
