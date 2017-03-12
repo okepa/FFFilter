@@ -19,6 +19,7 @@ class CrossoverFanfictionController {
     //Scrape all the fics for the selected fanfiction
     static getCrossovers(req, res) {
         let fanfiction = req.query.f;
+
         let fanfiction1 = fanfiction.split("-and-")[0];
         let fanfiction2 = fanfiction.split("-and-")[1];
         //get id of the first fanfiction
@@ -33,14 +34,28 @@ class CrossoverFanfictionController {
                     } else {
                         let finalArray = [];
                         let favorite = false;
-                        let ff1Id = ff1.ffid;
+                        let ff1Id = parseInt(ff1.ffid);
                         let ff2Id;
-                        if(fanfiction2 == "All")
-                        {
+                        if (fanfiction2 == "All") {
                             ff2Id = 0;
                         } else {
-                            ff2Id = ff2.ffid;
-                        } 
+                            ff2Id = parseInt(ff2.ffid);
+                            if (ff1Id < ff2Id) {
+                                ff1Id = ff1.ffid;
+                                if (fanfiction2 == "All") {
+                                    ff2Id = 0;
+                                } else {
+                                    ff2Id = ff2.ffid;
+                                }
+                            } else {
+                                ff2Id = ff1.ffid;
+                                if (fanfiction2 == "All") {
+                                    ff1Id = 0;
+                                } else {
+                                    ff1Id = ff2.ffid;
+                                }
+                            }
+                        }
                         let sort;
                         //select the sort or default 5
                         if (req.query.s == null) {
@@ -94,10 +109,8 @@ class CrossoverFanfictionController {
                                                 }).get();
                                             })
                                             .then((info) => {
-                                                console.log(info);
                                                 let count = 20;
                                                 for (let i in info) {
-                                                    //console.log(info);
                                                     for (let j in favorites) {
                                                         if (info[i] == favorites[j].title) {
                                                             favorite = true;
@@ -115,7 +128,6 @@ class CrossoverFanfictionController {
                                                     }
                                                     count++;
                                                 }
-                                                //console.log(finalArray);
                                                 res.render("components/crossovers", {
                                                     title: "Crossovers",
                                                     storyTitles: finalArray
