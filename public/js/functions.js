@@ -196,8 +196,10 @@ $(document).ready(() => {
     $("#crossover").click(() => {
         let fanfiction1 = $("#fanfiction1 .active").html();
         let fanfiction2 = $("#fanfiction2 .active").html();
-        console.log(fanfiction1);
-        console.log(fanfiction2);
-        window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}`;
+        if (fanfiction1 == null || fanfiction2 == null) {
+            $("#error").append("Choose one fanfiction from each side");
+        } else {
+            window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}`;
+        }
     });
 });

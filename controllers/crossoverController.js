@@ -94,8 +94,10 @@ class CrossoverFanfictionController {
                                                 }).get();
                                             })
                                             .then((info) => {
+                                                console.log(info);
                                                 let count = 20;
                                                 for (let i in info) {
+                                                    //console.log(info);
                                                     for (let j in favorites) {
                                                         if (info[i] == favorites[j].title) {
                                                             favorite = true;
@@ -113,7 +115,7 @@ class CrossoverFanfictionController {
                                                     }
                                                     count++;
                                                 }
-                                                console.log(finalArray);
+                                                //console.log(finalArray);
                                                 res.render("components/crossovers", {
                                                     title: "Crossovers",
                                                     storyTitles: finalArray
