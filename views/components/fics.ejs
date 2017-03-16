@@ -45,7 +45,7 @@
         <% } %>
           <div>
             <ul class="pagination">
-              <li class="waves-effect material-icons"><a id="-1">chevron_left</a></li>
+              <li id="left" class="waves-effect material-icons"><a id="-1">chevron_left</a></li>
               <% for(var i = 1; i <= 20; i++ ) { %>
                 <li id="<%= i %>" class="waves-effect">
                   <a id="<%= i %>">
@@ -53,7 +53,7 @@
                   </a>
                 </li>
                 <% } %>
-                  <li class="waves-effect material-icons"><a id="+1">chevron_right</a></li>
+                  <li id="right" class="waves-effect material-icons"><a id="+1">chevron_right</a></li>
             </ul>
           </div>
     </div>

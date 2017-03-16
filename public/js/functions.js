@@ -30,133 +30,138 @@ $(document).ready(() => {
         $(`#${page}`).addClass("active");
     } else {
         $("#1").addClass("active");
+        $("#left").addClass("disabled");
     }
     //Initialise the select
     $('select').material_select();
 
     //If the pagination buttons are clicked
-    $(".pagination a").click((event) => {
+    $(".pagination").click((event) => {
         //Couldn't use "this" so used event instead
         let page = event.target.id;
-        //when the chevrons are pressed
-        if (page == "-1" || page == "+1") {
-            let fanfiction = window.location.search.split("?")[1];
-            fanfiction = fanfiction.substr(2);
-            let filterSelected = window.location.search.split("&")[2];
-            //check if the filter has been selected
-            if (filterSelected == null) {
-                //the filter has not been selected
-                filterSelected = window.location.search.split("&")[1];
-                if (filterSelected != null) {
-                    filterSelected = filterSelected.substr(2);
-                    filterSelected = parseInt(filterSelected);
-                    if (page == "+1") {
-                        filterSelected = filterSelected + 1;
-                        if (filterSelected > 9) {
-                            fanfiction = fanfiction.slice(0, -5);
-                        } else {
-                            fanfiction = fanfiction.slice(0, -4);
-                        }
-                    } else {
-                        filterSelected = filterSelected - 1;
-                        if (filterSelected >= 9) {
-                            fanfiction = fanfiction.slice(0, -5);
-                        } else {
-                            fanfiction = fanfiction.slice(0, -4);
-                        }
-                    }
-                } else {
-                    if (page == "+1") {
-                        filterSelected = 2;
-                    } else {
-                        filterSelected = 1;
-                    }
-                }
-            } else {
-                //the filter has been selected
-                filterSelected = window.location.search.split("&")[3];
-                if (filterSelected != null) {
-                    filterSelected = filterSelected.substr(2);
-                    filterSelected = parseInt(filterSelected);
-                    if (page == "+1") {
-                        filterSelected = filterSelected + 1;
-                        if (filterSelected > 9) {
-                            fanfiction = fanfiction.slice(0, -5);
-                        } else {
-                            fanfiction = fanfiction.slice(0, -4);
-                        }
-                    } else {
-                        filterSelected = filterSelected - 1;
-                        if (filterSelected >= 9) {
-                            fanfiction = fanfiction.slice(0, -5);
-                        } else {
-                            fanfiction = fanfiction.slice(0, -4);
-                        }
-                    }
-                } else {
-                    filterSelected = 1;
-                    if (page == "+1") {
-                        filterSelected = 2;
-                    } else {
-                        filterSelected = 1;
-                    }
-                }
-            }
-            let url = window.location.href;
-            url = url.indexOf("fics");
-            if (url > -1) {
-                window.location.href = `/fics?f=${fanfiction}&p=${filterSelected}`;
-            } else {
-                let fanfiction1 = fanfiction.split("-and-")[0];
-                let fanfiction2 = fanfiction.split("-and-")[1];
-                window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}&p=${filterSelected}`;
-            }
+        if (page == "-1" && $(`#left`).hasClass("disabled")) {
+            
         } else {
-            //When the numbers are pressed
-            let fanfiction = window.location.search.split('?')[1];
-            fanfiction = fanfiction.substr(2);
-            let filterSelected = window.location.search.split("&")[2];
-            //check if the filter has been selected
-            if (filterSelected == null) {
-                //the filter has not been selected
-                filterSelected = window.location.search.split("&")[1];
-                console.log(filterSelected);
-                if (filterSelected != null) {
-                    filterSelected = filterSelected.substr(2);
-                    if (filterSelected > 9) {
-                        fanfiction = fanfiction.slice(0, -5);
+            //when the chevrons are pressed
+            if (page == "-1" || page == "+1") {
+                let fanfiction = window.location.search.split("?")[1];
+                fanfiction = fanfiction.substr(2);
+                let filterSelected = window.location.search.split("&")[2];
+                //check if the filter has been selected
+                if (filterSelected == null) {
+                    //the filter has not been selected
+                    filterSelected = window.location.search.split("&")[1];
+                    if (filterSelected != null) {
+                        filterSelected = filterSelected.substr(2);
+                        filterSelected = parseInt(filterSelected);
+                        if (page == "+1") {
+                            filterSelected = filterSelected + 1;
+                            if (filterSelected > 9) {
+                                fanfiction = fanfiction.slice(0, -5);
+                            } else {
+                                fanfiction = fanfiction.slice(0, -4);
+                            }
+                        } else {
+                            filterSelected = filterSelected - 1;
+                            if (filterSelected >= 9) {
+                                fanfiction = fanfiction.slice(0, -5);
+                            } else {
+                                fanfiction = fanfiction.slice(0, -4);
+                            }
+                        }
                     } else {
-                        fanfiction = fanfiction.slice(0, -4);
-                    }
-                }
-            } else {
-                //the filter has been selected
-                filterSelected = window.location.search.split("&")[3];
-                if (filterSelected != null) {
-                    filterSelected = filterSelected.substr(2);
-                    filterSelected = parseInt(filterSelected);
-                    if (filterSelected > 9) {
-                        fanfiction = fanfiction.slice(0, -5);
-                    } else {
-                        fanfiction = fanfiction.slice(0, -4);
+                        if (page == "+1") {
+                            filterSelected = 2;
+                        } else {
+                            filterSelected = 1;
+                        }
                     }
                 } else {
-                    filterSelected = 1;
-                    if (page == "+1") {
-                        filterSelected = 2;
+                    //the filter has been selected
+                    filterSelected = window.location.search.split("&")[3];
+                    if (filterSelected != null) {
+                        filterSelected = filterSelected.substr(2);
+                        filterSelected = parseInt(filterSelected);
+                        if (page == "+1") {
+                            filterSelected = filterSelected + 1;
+                            if (filterSelected > 9) {
+                                fanfiction = fanfiction.slice(0, -5);
+                            } else {
+                                fanfiction = fanfiction.slice(0, -4);
+                            }
+                        } else {
+                            filterSelected = filterSelected - 1;
+                            if (filterSelected >= 9) {
+                                fanfiction = fanfiction.slice(0, -5);
+                            } else {
+                                fanfiction = fanfiction.slice(0, -4);
+                            }
+                        }
                     } else {
                         filterSelected = 1;
+                        if (page == "+1") {
+                            filterSelected = 2;
+                        } else {
+                            filterSelected = 1;
+                        }
                     }
                 }
-            }
-            let url = window.location.href;
-            url = url.indexOf("fics");
-            if (url > -1) {
-                window.location.href = `/fics?f=${fanfiction}&p=${page}`;
+                let url = window.location.href;
+                url = url.indexOf("fics");
+                if (url > -1) {
+                    window.location.href = `/fics?f=${fanfiction}&p=${filterSelected}`;
+                } else {
+                    let fanfiction1 = fanfiction.split("-and-")[0];
+                    let fanfiction2 = fanfiction.split("-and-")[1];
+                    window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}&p=${filterSelected}`;
+                }
             } else {
-                let fanfiction1 = fanfiction.split("-and-")[0];
-                let fanfiction2 = fanfiction.split("-and-")[1];
-                window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}&p=${page}`;
+                //When the numbers are pressed
+                let fanfiction = window.location.search.split('?')[1];
+                fanfiction = fanfiction.substr(2);
+                let filterSelected = window.location.search.split("&")[2];
+                //check if the filter has been selected
+                if (filterSelected == null) {
+                    //the filter has not been selected
+                    filterSelected = window.location.search.split("&")[1];
+                    console.log(filterSelected);
+                    if (filterSelected != null) {
+                        filterSelected = filterSelected.substr(2);
+                        if (filterSelected > 9) {
+                            fanfiction = fanfiction.slice(0, -5);
+                        } else {
+                            fanfiction = fanfiction.slice(0, -4);
+                        }
+                    }
+                } else {
+                    //the filter has been selected
+                    filterSelected = window.location.search.split("&")[3];
+                    if (filterSelected != null) {
+                        filterSelected = filterSelected.substr(2);
+                        filterSelected = parseInt(filterSelected);
+                        if (filterSelected > 9) {
+                            fanfiction = fanfiction.slice(0, -5);
+                        } else {
+                            fanfiction = fanfiction.slice(0, -4);
+                        }
+                    } else {
+                        filterSelected = 1;
+                        if (page == "+1") {
+                            filterSelected = 2;
+                        } else {
+                            filterSelected = 1;
+                        }
+                    }
+                }
+                let url = window.location.href;
+                url = url.indexOf("fics");
+                if (url > -1) {
+                    window.location.href = `/fics?f=${fanfiction}&p=${page}`;
+                } else {
+                    let fanfiction1 = fanfiction.split("-and-")[0];
+                    let fanfiction2 = fanfiction.split("-and-")[1];
+                    window.location.href = `/crossovers?f=${fanfiction1}-and-${fanfiction2}&p=${page}`;
+                }
             }
         }
     });
