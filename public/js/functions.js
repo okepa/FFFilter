@@ -56,7 +56,7 @@ $(document).ready(() => {
                         filterSelected = parseInt(filterSelected);
                         if (page == "+1") {
                             filterSelected = filterSelected + 1;
-                            if (filterSelected > 9) {
+                            if (filterSelected > 10) {
                                 fanfiction = fanfiction.slice(0, -5);
                             } else {
                                 fanfiction = fanfiction.slice(0, -4);
