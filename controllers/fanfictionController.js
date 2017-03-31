@@ -54,6 +54,16 @@ class FanfictionController {
                 fanfiction = fanfiction.replace(/ /g, "-");
                 fanfiction = fanfiction.replace("/", "-");
                 fanfiction = fanfiction.replace("×", "-");
+                fanfiction = fanfiction.replace("é", "e");
+                if(fanfiction == "High-School-DxD-ハイスクールD-D"){
+                    fanfiction = "High-School-DxD-%E3%83%8F%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%ABD-D";
+                }
+                if(fanfiction == "Akame-ga-Kiru-アカメが斬る"){
+                    fanfiction = "Akame-ga-Kiru-%E3%82%A2%E3%82%AB%E3%83%A1%E3%81%8C%E6%96%AC%E3%82%8B";
+                }
+                if(fanfiction == "Tokyo-Ghoul-東京喰種トーキョーグール"){
+                    fanfiction = "Tokyo-Ghoul-%E6%9D%B1%E4%BA%AC%E5%96%B0%E7%A8%AE%E3%83%88%E3%83%BC%E3%82%AD%E3%83%A7%E3%83%BC%E3%82%B0%E3%83%BC%E3%83%AB";
+                }
                 let favorite = false;
                 let finalArray = [];
                 Favorites.find({"fanfiction":req.query.f}, (err, favorites) => {

@@ -91,12 +91,33 @@ class CrossoverFanfictionController {
                                     } else {
                                         //combine the two arrays together
                                         let favorites = favorites1.concat(favorites2);
+
                                         fanfiction1 = fanfiction1.replace(/ /g, "-");
                                         fanfiction1 = fanfiction1.replace("/", "-");
                                         fanfiction1 = fanfiction1.replace("×", "-");
+                                        fanfiction1 = fanfiction.replace("é", "e");
+                                        if (fanfiction1 == "High-School-DxD-ハイスクールD-D") {
+                                            fanfiction1 = "High-School-DxD-%E3%83%8F%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%ABD-D";
+                                        }
+                                        if (fanfiction1 == "Akame-ga-Kiru-アカメが斬る") {
+                                            fanfiction = "Akame-ga-Kiru-%E3%82%A2%E3%82%AB%E3%83%A1%E3%81%8C%E6%96%AC%E3%82%8B";
+                                        }
+                                        if (fanfiction1 == "Tokyo-Ghoul-東京喰種トーキョーグール") {
+                                            fanfiction1 = "Tokyo-Ghoul-%E6%9D%B1%E4%BA%AC%E5%96%B0%E7%A8%AE%E3%83%88%E3%83%BC%E3%82%AD%E3%83%A7%E3%83%BC%E3%82%B0%E3%83%BC%E3%83%AB";
+                                        }
                                         fanfiction2 = fanfiction2.replace(/ /g, "-");
                                         fanfiction2 = fanfiction2.replace("/", "-");
                                         fanfiction2 = fanfiction2.replace("×", "-");
+                                        fanfiction2 = fanfiction.replace("é", "e");
+                                        if (fanfiction2 == "High-School-DxD-ハイスクールD-D") {
+                                            fanfiction2 = "High-School-DxD-%E3%83%8F%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%ABD-D";
+                                        }
+                                        if (fanfiction2 == "Akame-ga-Kiru-アカメが斬る") {
+                                            fanfiction2 = "Akame-ga-Kiru-%E3%82%A2%E3%82%AB%E3%83%A1%E3%81%8C%E6%96%AC%E3%82%8B";
+                                        }
+                                        if (fanfiction2 == "Tokyo-Ghoul-東京喰種トーキョーグール") {
+                                            fanfiction2 = "Tokyo-Ghoul-%E6%9D%B1%E4%BA%AC%E5%96%B0%E7%A8%AE%E3%83%88%E3%83%BC%E3%82%AD%E3%83%A7%E3%83%BC%E3%82%B0%E3%83%BC%E3%83%AB";
+                                        }
                                         scraperjs.StaticScraper.create(`https://www.fanfiction.net/${fanfiction1}-and-${fanfiction2}-Crossovers/${ff1Id}/${ff2Id}/?&srt=${sort}&lan=1&r=10&len=20&t=${time}&p=${page}`)
                                             .scrape(($) => {
                                                 return $(".z-list.zhover.zpointer *").map(function () {
