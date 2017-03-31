@@ -19,7 +19,6 @@ class CrossoverFanfictionController {
     //Scrape all the fics for the selected fanfiction
     static getCrossovers(req, res) {
         let fanfiction = req.query.f;
-
         let fanfiction1 = fanfiction.split("-and-")[0];
         let fanfiction2 = fanfiction.split("-and-")[1];
         //get id of the first fanfiction
@@ -95,20 +94,24 @@ class CrossoverFanfictionController {
                                         fanfiction1 = fanfiction1.replace(/ /g, "-");
                                         fanfiction1 = fanfiction1.replace("/", "-");
                                         fanfiction1 = fanfiction1.replace("×", "-");
-                                        fanfiction1 = fanfiction.replace("é", "e");
-                                        if (fanfiction1 == "High-School-DxD-ハイスクールD-D") {
+                                        fanfiction1 = fanfiction1.replace("é", "e");
+                                        //console.log(fanfiction1);
+                                        if (fanfiction1 == "High-School-DxD-ハイスクールD-D") {                                           
                                             fanfiction1 = "High-School-DxD-%E3%83%8F%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%ABD-D";
                                         }
                                         if (fanfiction1 == "Akame-ga-Kiru-アカメが斬る") {
+                                            console.log("the same");
                                             fanfiction1 = "Akame-ga-Kiru-%E3%82%A2%E3%82%AB%E3%83%A1%E3%81%8C%E6%96%AC%E3%82%8B";
                                         }
                                         if (fanfiction1 == "Tokyo-Ghoul-東京喰種トーキョーグール") {
+                                            console.log("the same");
                                             fanfiction1 = "Tokyo-Ghoul-%E6%9D%B1%E4%BA%AC%E5%96%B0%E7%A8%AE%E3%83%88%E3%83%BC%E3%82%AD%E3%83%A7%E3%83%BC%E3%82%B0%E3%83%BC%E3%83%AB";
                                         }
                                         fanfiction2 = fanfiction2.replace(/ /g, "-");
                                         fanfiction2 = fanfiction2.replace("/", "-");
                                         fanfiction2 = fanfiction2.replace("×", "-");
-                                        fanfiction2 = fanfiction.replace("é", "e");
+                                        fanfiction2 = fanfiction2.replace("é", "e");
+                                        //console.log(fanfiction2);
                                         if (fanfiction2 == "High-School-DxD-ハイスクールD-D") {
                                             fanfiction2 = "High-School-DxD-%E3%83%8F%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%ABD-D";
                                         }
