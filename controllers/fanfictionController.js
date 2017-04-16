@@ -66,11 +66,18 @@ class FanfictionController {
                 }
                 let favorite = false;
                 let finalArray = [];
+                let link;
+                if(time == 99){
+                    link = `https://www.fanfiction.net/${medium}/${fanfiction}/?&srt=${sort}&lan=1&r=10&len=20&p=${page}`;                   
+                } else {
+                    link = `https://www.fanfiction.net/${medium}/${fanfiction}/?&srt=${sort}&lan=1&r=10&len=20&t=${time}&p=${page}`;
+                }
                 Favorites.find({"fanfiction":req.query.f}, (err, favorites) => {
                     if (err) {
                         reject(err);
                     } else {
-                        scraperjs.StaticScraper.create(`https://www.fanfiction.net/${medium}/${fanfiction}/?&srt=${sort}&lan=1&r=10&len=20&t=${time}&p=${page}`)
+                        
+                        scraperjs.StaticScraper.create(link)
                             .scrape(($) => {
                                 return $(".z-list.zhover.zpointer *").map(function () {
                                     let scrapeArray = [];

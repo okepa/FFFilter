@@ -95,8 +95,7 @@ class CrossoverFanfictionController {
                                         fanfiction1 = fanfiction1.replace("/", "-");
                                         fanfiction1 = fanfiction1.replace("×", "-");
                                         fanfiction1 = fanfiction1.replace("é", "e");
-                                        //console.log(fanfiction1);
-                                        if (fanfiction1 == "High-School-DxD-ハイスクールD-D") {                                           
+                                        if (fanfiction1 == "High-School-DxD-ハイスクールD-D") {
                                             fanfiction1 = "High-School-DxD-%E3%83%8F%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%ABD-D";
                                         }
                                         if (fanfiction1 == "Akame-ga-Kiru-アカメが斬る") {
@@ -111,7 +110,6 @@ class CrossoverFanfictionController {
                                         fanfiction2 = fanfiction2.replace("/", "-");
                                         fanfiction2 = fanfiction2.replace("×", "-");
                                         fanfiction2 = fanfiction2.replace("é", "e");
-                                        //console.log(fanfiction2);
                                         if (fanfiction2 == "High-School-DxD-ハイスクールD-D") {
                                             fanfiction2 = "High-School-DxD-%E3%83%8F%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%ABD-D";
                                         }
@@ -128,13 +126,18 @@ class CrossoverFanfictionController {
                                                     var text = $(this).text();
                                                     var href = $(this).attr("href");
                                                     scrapeArray.push(text);
+                                                    // console.log(text);
                                                     scrapeArray.push(href);
                                                     return scrapeArray;
                                                 }).get();
                                             })
                                             .then((info) => {
+                                                
                                                 let count = 20;
                                                 for (let i in info) {
+                                                    if (typeof info[i] === "string") {
+                                                        console.log(info[i]);
+                                                    }
                                                     for (let j in favorites) {
                                                         if (info[i] == favorites[j].title) {
                                                             favorite = true;
