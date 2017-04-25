@@ -119,7 +119,13 @@ class CrossoverFanfictionController {
                                         if (fanfiction2 == "Tokyo-Ghoul-東京喰種トーキョーグール") {
                                             fanfiction2 = "Tokyo-Ghoul-%E6%9D%B1%E4%BA%AC%E5%96%B0%E7%A8%AE%E3%83%88%E3%83%BC%E3%82%AD%E3%83%A7%E3%83%BC%E3%82%B0%E3%83%BC%E3%83%AB";
                                         }
-                                        scraperjs.StaticScraper.create(`https://www.fanfiction.net/${fanfiction1}-and-${fanfiction2}-Crossovers/${ff1Id}/${ff2Id}/?&srt=${sort}&lan=1&r=10&len=20&t=${time}&p=${page}`)
+                                        let link;
+                                        if (time == 99) {
+                                            link = `https://www.fanfiction.net/${fanfiction1}-and-${fanfiction2}-Crossovers/${ff1Id}/${ff2Id}/?&srt=${sort}&lan=1&r=10&len=20&p=${page}`;
+                                        } else {
+                                            link = `https://www.fanfiction.net/${fanfiction1}-and-${fanfiction2}-Crossovers/${ff1Id}/${ff2Id}/?&srt=${sort}&lan=1&r=10&len=20&t=${time}&p=${page}`;
+                                        }
+                                        scraperjs.StaticScraper.create(link)
                                             .scrape(($) => {
                                                 return $(".z-list.zhover.zpointer *").map(function () {
                                                     let scrapeArray = [];
@@ -132,7 +138,7 @@ class CrossoverFanfictionController {
                                                 }).get();
                                             })
                                             .then((info) => {
-                                                
+
                                                 let count = 20;
                                                 for (let i in info) {
                                                     if (typeof info[i] === "string") {
